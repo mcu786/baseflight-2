@@ -239,6 +239,7 @@ extern uint8_t GPSModeHome;
 extern uint8_t GPSModeHold;
 extern uint16_t GPS_altitude;
 extern uint16_t GPS_speed;                      // altitude in 0.1m and speed in 0.1m/s - Added by Mis
+extern int16_t GPS_heading;                    // heading in degrees
 extern uint8_t vbat;
 extern int16_t lookupRX[7];     //  lookup table for expo & RC rate
 

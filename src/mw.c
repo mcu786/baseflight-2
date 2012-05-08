@@ -48,6 +48,7 @@ uint16_t GPS_distanceToHome;    // in meters
 int16_t GPS_directionToHome = 0;        // in degrees
 uint16_t GPS_distanceToHome, GPS_distanceToHold;        // distance to home or hold point in meters
 int16_t GPS_directionToHome, GPS_directionToHold;       // direction to home or hol point in degrees
+int16_t GPS_heading;                     // gps heading in degrees
 uint16_t GPS_altitude, GPS_speed;       // altitude in 0.1m and speed in 0.1m/s - Added by Mis
 uint8_t GPS_update = 0;         // it's a binary toogle to distinct a GPS position update
 int16_t GPS_angle[2];           // it's the angles that must be applied for GPS correction
@@ -471,8 +472,11 @@ void loop(void)
         case 0:
             taskOrder++;
 #ifdef MAG
-            if (sensors(SENSOR_MAG))
-                Mag_getADC();
+            if (sensors(SENSOR_MAG)){
+                Mag_getADC();                
+            } else if (sensors(SENSOR_GPS) && cfg.mixerConfiguration == MULTITYPE_FLYING_WING) {
+                heading = GPS_heading;
+            }
 #endif
             break;
         case 1:

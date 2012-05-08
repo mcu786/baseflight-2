@@ -176,6 +176,9 @@ static bool GPS_newFrame(char c)
             if (param == 7) {
                 GPS_speed = ((uint32_t) grab_fields(string, 1) * 514444L) / 100000L;
             }                   // speed in cm/s added by Mis
+            if (param == 8) {
+                GPS_heading = grab_fields(string, 0);
+            }                   // heading
         }
         param++;
         offset = 0;
